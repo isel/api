@@ -1,2 +1,19 @@
-<h1>Deployments#list</h1>
-<p>Find me in app/views/deployments/list.html.erb</p>
+<h1>Deployments</h1>
+
+<% @deployments.each do |deployment| %>
+  <table>
+    <tr>
+      <td><b><%= deployment.name %></b></td>
+    </tr>
+    <tr>
+      <table>
+        <% deployment.servers.each do |server| %>
+          <tr>
+            <td><%= server.name %></td>
+            <td><%= server.private_ip %></td>
+          </tr>
+        <% end %>
+      </table>
+    </tr>
+  </table>
+<% end %>
