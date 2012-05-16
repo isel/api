@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe DeploymentsController do #, :type => :controller do
+describe AlldeploymentsController do #, :type => :controller do
 
   describe "GET 'list'" do
     it "returns http success" do

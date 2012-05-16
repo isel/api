@@ -1,2 +1,2 @@
-module DeploymentsHelper
+module AlldeploymentsHelper
 end

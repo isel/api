@@ -1,5 +1,16 @@
 Api::Application.routes.draw do
+  #get "developers/list"
+
   get "deployments/list"
+
+  namespace :deployments do
+    resources :developers do
+      collection do
+        get 'list'
+      end
+    end
+  end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
