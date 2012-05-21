@@ -1,4 +1,12 @@
 Api::Application.routes.draw do
+  get "deployments/index"
+
+  resources :deployments do
+    collection do
+      get 'index'
+    end
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
