@@ -6,10 +6,8 @@ class Deployments < RightScaleAPI
     super(api)
   end
 
-  def all(filters)
-    found_deployments = get('deployments')
-    #found_deployments = [found_deployments] if found_deployments.class == Hash
-    #found_deployments.map { |d| Deployment.new(d['nickname']) } unless found_deployments.nil?
+  def all(filters = nil)
+    get('deployments').map { |d| Deployment.new(:name => d['nickname']) }
   end
 
 end

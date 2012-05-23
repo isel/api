@@ -23,10 +23,10 @@ class RightScaleAPI
     code != '422' && code != '503'
   end
 
-  def get(request)
+  def get(request, query_string = nil)
     response = nil
     Helpers::Process.new(@sleep_time).run("executing #{request}", @timeout) do
-      response = @right_api.send("#{request}.js", 'get', {:accept => :json})
+      response = @right_api.send("#{request}.js?#{query_string}", 'get', {:accept => :json})
       successful?
     end
     JSON.parse(response)
