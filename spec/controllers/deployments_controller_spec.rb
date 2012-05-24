@@ -5,8 +5,8 @@ describe DeploymentsController do
   let(:deployments) { Object.new }
   let(:all_deployments) do
     [
-        Deployment.new(:name => 'name1'),
-        Deployment.new(:name => 'name2')
+        Deployment.new('name1'),
+        Deployment.new('name2')
     ]
   end
 
@@ -24,7 +24,8 @@ describe DeploymentsController do
 
       response.should be_success
       response.headers['Content-Type'].should include 'application/json'
-      response.body.should == "[{\"attributes\":{\"name\":\"name1\"},\"name\":\"name1\"},{\"attributes\":{\"name\":\"name2\"},\"name\":\"name2\"}]"
+      puts response.body
+      response.body.should == "[{\"deployment\":{\"name\":\"name1\"}},{\"deployment\":{\"name\":\"name2\"}}]"
     end
 
     it "should succeed with xml format" do
@@ -32,8 +33,18 @@ describe DeploymentsController do
 
       response.should be_success
       response.headers['Content-Type'].should include 'application/xml'
-      response.body.should include '<name>name1</name>'
-      response.body.should include '<name>name2</name>'
+      puts response.body
+      response.body.should == <<-EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<deployments type="array">
+  <deployment>
+    <name>name1</name>
+  </deployment>
+  <deployment>
+    <name>name2</name>
+  </deployment>
+</deployments>
+      EOF
     end
 
     it "should succeed with html format" do

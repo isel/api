@@ -7,7 +7,7 @@ class Deployments < RightScaleAPI
   end
 
   def all(filters = nil)
-    get('deployments').map { |d| Deployment.new(:name => d['nickname']) }
+    get('deployments').map { |d| Deployment.new(d['nickname']) }
   end
 
 end
